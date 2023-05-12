@@ -1,51 +1,47 @@
-from scapy.all import *
-from pymongo import MongoClient
-from datetime import datetime
 import argparse
+from kafka import KafkaProducer
+from scapy.all import *
+import time
+import json
 
-# Set up command-line arguments
-parser = argparse.ArgumentParser(description='Capture and store network packets in MongoDB')
-parser.add_argument('--username', required=True, help='MongoDB username')
-parser.add_argument('--password', required=True, help='MongoDB password')
-parser.add_argument('--host', required=True, help='MongoDB host url')
+# parse command line arguments
+parser = argparse.ArgumentParser(description='Capture network packets and publish to Kafka')
+parser.add_argument('--bootstrap-servers', dest='bootstrap_servers', required=True,
+                    help='List of Kafka bootstrap servers (comma-separated)')
+parser.add_argument('--topic', dest='topic', required=True, help='Name of the Kafka topic to publish to')
+parser.add_argument('--device', dest='device', required=True, help='Name of the network device to capture on')
+parser.add_argument('--producer-interval', dest='producer_interval', type=int, default=600,
+                    help='Interval in seconds to recreate the Kafka producer')
 args = parser.parse_args()
 
-# Connect to MongoDB with username and password
-client = MongoClient('mongodb+srv://' + args.username + ':' + args.password + '@' + args.host)
-#'@cluster0.k9cz1z9.mongodb.net/?retryWrites=true&w=majority')
-db = client['packet_db']
-collection = db['packets']
+# define a function to create a Kafka producer
+def create_producer():
+    return KafkaProducer(bootstrap_servers=args.bootstrap_servers.split(','))
 
-# Set the network interface and filter for capturing packets
-iface = 'wlp110s0'
-filter = 'tcp'
+# start sniffing for packets and publish to Kafka
+producer = create_producer()
+last_producer_time = time.time()
+sniff_count = 0
 
-# Define a packet handling function
 def handle_packet(packet):
-
-    # Convert packet to dictionary
-    src_ip = packet[IP].src
-    dst_ip = packet[IP].dst
-    src_port = packet[TCP].sport
-    dst_port = packet[TCP].dport
-    timestamp = packet.time
-
-
-    # Convert packet to dictionary
-    packet_dict = {
-        'src_ip': src_ip,
-        'dst_ip': dst_ip,
-        'src_port': src_port,
-        'dst_port': dst_port,
-        'timestamp': timestamp
+    global producer, last_producer_time, sniff_count
+    if not TCP in packet:
+        return
+    sniff_count += 1
+    packet_data = {
+        'src_ip': packet[IP].src,
+        'src_port': packet[TCP].sport,
+        'dst_ip': packet[IP].dst,
+        'dst_port': packet[TCP].dport,
+        'timestamp': packet.time
     }
-    # Insert packet into MongoDB
-    print(packet_dict)
-    collection.insert_one(packet_dict)
+    producer.send(args.topic, json.dumps(packet_data).encode('utf-8'))
 
-# Start sniffing packets indefinitely
-while True:
-    sniff(iface=iface, filter=filter, prn=handle_packet)
+    if time.time() - last_producer_time >= args.producer_interval:
+        producer.close()
+        producer = create_producer()
+        last_producer_time = time.time()
+        print(f'Recreated Kafka producer after sniffing {sniff_count} packets')
 
-# Close the MongoDB connection
-client.close()
+sniff(iface=args.device, prn=handle_packet, store=0)
+
