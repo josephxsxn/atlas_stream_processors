@@ -15,5 +15,6 @@ sp.name.stop()
 sp.name.stats()
 
 sp.listStreamProcessors()
+
 sp.createStreamConnection([connections])
 
