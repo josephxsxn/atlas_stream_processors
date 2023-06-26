@@ -9,7 +9,9 @@ sp.createStreamProcessor('name',pipeline,dlqConfig)
   DLQ Config is optional
 
 sp.name.start()
+
 sp.name.stop()
+
 sp.name.stats()
 
 sp.listStreamProcessors()
