@@ -11,3 +11,7 @@ sp.createStreamProcessor('name',pipeline,dlqConfig)
 sp.name.start()
 sp.name.stop()
 sp.name.stats()
+
+sp.listStreamProcessors()
+sp.createStreamConnection([connections])
+
