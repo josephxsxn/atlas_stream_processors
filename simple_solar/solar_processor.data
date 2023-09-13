@@ -1,0 +1,77 @@
+ {
+              $source: {
+                connectionName: 'sample_stream_solar',
+                timeField: { $dateFromString: { dateString: '$timestamp' }}
+            }
+        },
+         { $validate: {
+                validator:  {
+                    $and: [
+                            {$expr: {
+                                $ne: [
+                                "$device_id",
+                                "device_8"
+                                ]
+                            }},
+                            {$jsonSchema: {
+                            required: [ "device_id", "timestamp", "obs", "event_type" ],
+                            not : {required : ["event_details"]},
+                            properties: {
+                                device_id: {
+                                    bsonType: "string",
+                                    pattern: "^device_\\d+",
+                                    description: "device_id is required and must be like device_#"
+                                },
+                                obs: {
+                                    bsonType: "object",
+                                    required: [ "watts", "temp" ],
+                                    properties:{
+                                        watts : {
+                                            bsonType : "int",
+                                            minimum: 0,
+                                            maximum: 250,
+                                            description: "'obs.watts' is required and cannot be less then 0 or more then 250"
+                                        },
+                                        temp : {
+                                             bsonType: "int",
+                                             description: "'obs.temp' must be an integer"
+                                        },
+                                     }
+                                    },
+                                    event_type : {
+                                         bsonType: "int",
+                                            minimum: 0,
+                                            maximum: 1,
+                                    },
+                                timestamp: {
+                                    bsonType: "string",
+                                    description: "'timestamp' must be a string "
+                                }
+                              }
+                            }
+                            }
+                    ]
+                            },    validationAction : "dlq"}},
+         { $tumblingWindow: {
+                interval: {size: NumberInt(10), unit: "second"},
+                        "pipeline": [ 
+                            {
+                                $group: {
+                                    "_id" : { "device_id" : "$device_id"}, 
+                                    max_temp :  { $max : "$obs.temp"},
+                                    max_watts :  { $max : "$obs.watts"},
+                                    min_watts : { $min : "$obs.watts"},
+                                    avg_watts :  { $avg : "$obs.watts"},
+                                    median_watts : { $median :{
+                                                    input: "$obs.watts",
+                                                    method: "approximate"
+                                                  } }                                      
+                                }
+                            }
+                        ],
+                     } 
+                 },
+         { $emit: { 
+            connectionName: 'kafkasink', 
+         topic: 'jsn_sample_solar' 
+                 }}
