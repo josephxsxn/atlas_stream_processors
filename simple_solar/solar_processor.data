@@ -71,7 +71,14 @@
                         ],
                      } 
                  },
-         { $emit: { 
-            connectionName: 'kafkasink', 
-         topic: 'jsn_sample_solar' 
-                 }}
+        {$merge: {
+            into: {
+                connectionName: "jsncluster0",
+                db: "test",
+                coll: "solardata"},
+                on: ["_id"]
+            
+        }}
+
+{dlq: {connectionName: "jsncluster0", db: "test", coll: "solar_dlq"}}
+
