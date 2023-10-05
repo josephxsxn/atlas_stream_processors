@@ -82,3 +82,9 @@
 
 {dlq: {connectionName: "jsncluster0", db: "test", coll: "solar_dlq"}}
 
+sp.createStreamProcessor('NAME',[PIPELINE],DLQObj)
+sp.NAME.start()
+sp.NAME.sample()
+sp.NAME.stats()
+sp.NAME.stop()
+sp.NAME.drop()
