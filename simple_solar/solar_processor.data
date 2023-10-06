@@ -88,9 +88,9 @@ m =        {$merge: {
 
 dlq = {dlq: {connectionName: "jsncluster0", db: "test", coll: "solar_dlq"}}
 
-sp.createStreamProcessor('NAME',[s,v,w,m],dlq)
-sp.NAME.start()
-sp.NAME.sample()
-sp.NAME.stats()
-sp.NAME.stop()
-sp.NAME.drop()
+sp.createStreamProcessor('solardemo',[s,v,w,m],dlq)
+sp.solardemo.start()
+sp.solardemo.sample()
+sp.solardemo.stats()
+sp.solardemo.stop()
+sp.solardemo.drop()
