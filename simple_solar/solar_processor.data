@@ -1,3 +1,10 @@
+var source_name = 'sample_stream_solar'
+var cluster_name = 'jsncluster0'
+var cluster_db = 'test'
+var cluster_data_coll = 'solardata'
+var cluster_dlq_db = 'test'
+var cluster_dlq_coll = 'solar_dlq'
+
 s =  {
               $source: {
                 connectionName: 'sample_stream_solar',
@@ -83,14 +90,14 @@ sp.process([s,v,w])
 
 m =        {$merge: {
             into: {
-                connectionName: "jsncluster0",
-                db: "test",
-                coll: "solardata"},
+                connectionName: cluster_name,
+                db: cluster_db,
+                coll: cluster_data_coll},
                 on: ["_id"]
             
         }}
 
-dlq = {dlq: {connectionName: "jsncluster0", db: "test", coll: "solar_dlq"}}
+dlq = {dlq: {connectionName: cluster_name, db: cluster_dlq_db, coll: cluster_dlq_coll}}
 
 sp.createStreamProcessor('solardemo',[s,v,w,m],dlq)
 sp.solardemo.start()
