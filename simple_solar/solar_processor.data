@@ -1,3 +1,6 @@
+Required to have mongosh 2.0+
+https://www.mongodb.com/try/download/shell
+
 var source_name = 'sample_stream_solar'
 var cluster_name = 'jsncluster0'
 var cluster_db = 'test'
