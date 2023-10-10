@@ -5,6 +5,8 @@ s =  {
             }
         }
 
+sp.process([s])
+
 
   v =       { $validate: {
                 validator:  {
@@ -55,6 +57,7 @@ s =  {
                     ]
                             },    validationAction : "dlq"}}
 
+sp.process([s,v])
 
   w =       { $tumblingWindow: {
                 interval: {size: NumberInt(10), unit: "second"},
@@ -76,6 +79,7 @@ s =  {
                      } 
                  }
 
+sp.process([s,v,w])
 
 m =        {$merge: {
             into: {
