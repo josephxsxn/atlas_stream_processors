@@ -38,7 +38,11 @@ db.createCollection('countData')
 
     m = {$match : {$expr : {$lte : ['$count', { $arrayElemAt: [ "$rules.filter", 0 ] }]}}}
 
-    inc = {$addFields: {'count' : {$add :['$count' , 1]}}}
+   inc = {$addFields: {
+    'count' : {$add :['$count' , 1]},
+    'filter_rule' : { $arrayElemAt: [ "$rules.filter", 0 ] }
+    }}
+
 
     p = {$project : {
         entity : 1,
