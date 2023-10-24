@@ -56,7 +56,7 @@ db.createCollection('countData')
 
     }}
 
-    sp.process([s,rr,af,l,faf,m,inc,p,merge])
+    sp.process([s,rr,af,l,m,inc,p,merge])
 
     {dlq: {connectionName: "jsncluster0", db: "test", coll: "countdata_dlq"}}
 
