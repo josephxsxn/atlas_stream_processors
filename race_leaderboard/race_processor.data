@@ -1,18 +1,3 @@
-            sp.createStreamConnection({
-                name: 'kafka1',
-                type: 'kafka',
-                options: {bootstrapServers: 'localhost:9092', isTestKafka: false},
-            }, {
-              name: 'db1',
-              type: 'atlas',
-              options: {uri: 'mongodb://localhost:27017'},
-            },
-            {
-            name: 'dlq1',
-            type: 'atlas',
-            options: {uri: 'mongodb://localhost:27017'},
-            })
-            
 
             sp.createStreamProcessor('race1', [
                 { $source: {
