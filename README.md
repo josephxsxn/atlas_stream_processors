@@ -16,5 +16,5 @@ sp.name.stats()
 
 sp.listStreamProcessors()
 
-sp.createStreamConnection([connections])
+
 
