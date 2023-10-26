@@ -1,4 +1,6 @@
-        w = {
+example message - {entity: 0, count : 22}
+
+w = {
                 $tumblingWindow: {
                     interval: {size: NumberInt(5), unit: "second"},
                     pipeline: [
