@@ -18,3 +18,11 @@ sp.listStreamProcessors()
 
 
 
+#enable col for fullDocuments in given database
+var cols = db.getCollectionNames()
+for (const el of cols){
+    db.runCommand( {
+        collMod: el,
+        changeStreamPreAndPostImages: { enabled: true }
+    } )
+}
