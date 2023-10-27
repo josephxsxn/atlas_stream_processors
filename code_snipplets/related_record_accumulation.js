@@ -1,4 +1,5 @@
-#bronze1 & bronze2 are objects that are related by $_STAT, messages are missing one of the bronze# fields. and $top is used to push the null objects to the bottom. 
+--bronze1 & bronze2 are objects that are related by $_STAT, 
+--messages are missing one of the bronze# fields. and $top is used to push the null objects to the bottom. 
 
 w = { 
     $tumblingWindow: {
