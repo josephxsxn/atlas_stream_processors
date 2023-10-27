@@ -31,6 +31,17 @@ merge = {
     }
 }
 
+--Dynamic Merge
+    merge =  {$merge: {
+        into: {
+            connectionName: "jsncluster0",
+            db: "test",
+            coll: { $cond: { if: {$expr : {$lte : ['$count', '$filter_rule']}}, then: "countData", else: { $concat: ["countData_",{$toString: '$count'}]} } }},
+            on: ["entity"],
+            whenMatched: "replace"
+
+    }}
+
 --Emit to a Kafka Topic
 e =     { $emit: { 
             connectionName: 'aaeh', 
