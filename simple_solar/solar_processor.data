@@ -68,7 +68,7 @@ v1 = { $validate: {
                               }
                             }
                             }
-                            , validationAction : "dlq"}}
+                            , validationAction : "discard"}}
 sp.process([s,v1])
 
   v2 =       { $validate: {
