@@ -18,7 +18,60 @@ s =  {
 sp.process([s])
 
 
-  v =       { $validate: {
+ma =   { $match: {
+                $expr: {
+                                $ne: [
+                                "$device_id",
+                                "device_8"
+                                ]
+       }}}
+                          
+              
+
+sp.process([s,ma])
+
+v1 = { $validate: {
+                validator: {$jsonSchema: {
+                            required: [ "device_id", "timestamp", "obs", "event_type"],
+                            not : {required : ["event_details"]},
+                            properties: {
+                                device_id: {
+                                    bsonType: "string",
+                                    pattern: "^device_\\d+",
+                                    description: "device_id is required and must be like device_#"
+                                },
+                                obs: {
+                                    bsonType: "object",
+                                    required: [ "watts", "temp" ],
+                                    properties:{
+                                        watts : {
+                                            bsonType : "int",
+                                            minimum: 0,
+                                            maximum: 250,
+                                            description: "'obs.watts' is required and cannot be less then 0 or more then 250"
+                                        },
+                                        temp : {
+                                             bsonType: "int",
+                                             description: "'obs.temp' must be an integer"
+                                        },
+                                     }
+                                    },
+                                    event_type : {
+                                         bsonType: "int",
+                                            minimum: 0,
+                                            maximum: 1,
+                                    },
+                                timestamp: {
+                                    bsonType: "string",
+                                    description: "'timestamp' must be a string "
+                                }
+                              }
+                            }
+                            }
+                            , validationAction : "dlq"}}
+sp.process([s,v1])
+
+  v2 =       { $validate: {
                 validator:  {
                     $and: [
                             {$expr: {
@@ -67,7 +120,7 @@ sp.process([s])
                     ]
                             },    validationAction : "dlq"}}
 
-sp.process([s,v])
+sp.process([s,v2])
 
   w =       { $tumblingWindow: {
                 interval: {size: NumberInt(10), unit: "second"},
@@ -89,7 +142,7 @@ sp.process([s,v])
                      } 
                  }
 
-sp.process([s,v,w])
+sp.process([s,v2,w])
 
 m =        {$merge: {
             into: {
@@ -102,7 +155,7 @@ m =        {$merge: {
 
 dlq = {dlq: {connectionName: cluster_name, db: cluster_dlq_db, coll: cluster_dlq_coll}}
 
-sp.createStreamProcessor('solardemo',[s,v,w,m],dlq)
+sp.createStreamProcessor('solardemo',[s,v2,w,m],dlq)
 sp.solardemo.start()
 sp.solardemo.sample()
 sp.solardemo.stats()
