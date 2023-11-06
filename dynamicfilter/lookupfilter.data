@@ -15,7 +15,7 @@ db.createCollection('countData')
             connectionName: 'jsncluster0',
             db: 'test',
             coll: 'countData',
-            fullDocument: 'required'
+            fullDocument: 'whenAvailable'
         }
     }
     rr = {$replaceRoot: {newRoot: '$fullDocument'}}
