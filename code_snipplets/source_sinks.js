@@ -4,7 +4,7 @@ s = {
             connectionName: 'jsncluster0',
             db: 'asp_poc_db',
             coll: 'sensors_data',
-            fullDocument: 'required'
+            fullDocument: 'whenAvailable'
         }
     }
 
@@ -13,7 +13,7 @@ s = {
         $source:  {
             connectionName: 'jsncluster0',
             db: 'asp_poc_db',
-            fullDocument: 'required'
+            fullDocument: 'whenAvailable'
         }
     }
 
