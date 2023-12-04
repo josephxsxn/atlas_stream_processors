@@ -38,7 +38,7 @@ merge = {
       into: {
           connectionName: 'jsncluster0',
           db: 'silver',
-          coll: 'logbook'
+          coll: 'superdoc'
       },
       on: ['dc_log_id'],
       whenMatched: 'merge',
