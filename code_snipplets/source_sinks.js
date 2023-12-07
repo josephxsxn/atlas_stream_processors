@@ -47,3 +47,14 @@ e =     { $emit: {
             connectionName: 'aaeh', 
              topic: 'sometopic' 
          }}
+
+
+--Kafka Start At Latest/Earliest
+s1={
+  '$source': {
+    connectionName: 'ccloud',
+    topic: 'Stocks',
+    timeField: { '$dateFromString': { dateString: '$tx_time' } },
+    config: { startAt: 'earliest' }
+  }
+}
