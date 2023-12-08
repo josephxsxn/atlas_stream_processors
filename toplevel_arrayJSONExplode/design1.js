@@ -37,3 +37,41 @@ m = {$merge : { into: {connectionName: "jsncluster0", db: "test", coll: "arrayte
 dlq = {dlq: {connectionName: "jsncluster0", db: "test", coll: "arraytest_dlq"}}
 
 sp.createStreamProcessor('arraytest', [s,af,p,uw,af2,rr,m], dlq)
+
+/* outputs
+
+  Atlas atlas-ec9c8m-shard-0 [primary] test> db.arraytest.find()
+[
+  {
+    '1': 1,
+    _id: ObjectId("65735afcd99f91d7ef99a841"),
+    _stream_meta: {
+      sourceType: 'kafka',
+      sourcePartition: 0,
+      sourceOffset: Long("35"),
+      timestamp: ISODate("2023-12-08T18:05:46.355Z")
+    }
+  },
+  {
+    '2': 2,
+    _id: ObjectId("65735afcd99f91d7ef99a842"),
+    _stream_meta: {
+      sourceType: 'kafka',
+      sourcePartition: 0,
+      sourceOffset: Long("35"),
+      timestamp: ISODate("2023-12-08T18:05:46.355Z")
+    }
+  },
+  {
+    '3': 3,
+    _id: ObjectId("65735afcd99f91d7ef99a843"),
+    _stream_meta: {
+      sourceType: 'kafka',
+      sourcePartition: 0,
+      sourceOffset: Long("35"),
+      timestamp: ISODate("2023-12-08T18:05:46.355Z")
+    }
+  }
+]
+
+  */
