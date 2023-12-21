@@ -1,0 +1,20 @@
+Just an example of the Kafka Metadata that is currently included
+
+AtlasStreamProcessing> sp.process([s])
+{
+  ordertime: Long("1497014222380"),
+  orderid: 18,
+  itemid: 'Item_184',
+  address: {
+    city: 'Mountain View',
+    state: 'CA',
+    zipcode: 94041
+  },
+  _ts: ISODate("2023-12-21T13:32:03.875Z"),
+  _stream_meta: {
+    sourceType: 'kafka',
+    sourcePartition: 0,
+    sourceOffset: 1,
+    timestamp: ISODate("2023-12-21T13:32:03.875Z")
+  }
+}
