@@ -1,5 +1,10 @@
-# CLI COMMANDS
+#docs
+https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/stream_instance
+https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/stream_connection
+https://github.com/mongodb/terraform-provider-mongodbatlas/tree/master/examples/atlas-streams
 https://www.mongodb.com/docs/atlas/configure-api-access/#create-an-api-key-in-an-organization  
+
+# CLI COMMANDS
 
 export MONGODB_ATLAS_ENABLE_BETA=true
 export TF_VAR_MONGODB_ATLAS_PUBLIC_KEY=""
