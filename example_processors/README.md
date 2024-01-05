@@ -1,6 +1,6 @@
 Example end to end processors
 
-For a very basic intro processor using the build in ASP sample data source see simple_solar
+For a very basic intro processor using the build in ASP sample data source see [simple_solar](https://github.com/josephxsxn/atlas_stream_processors/blob/master/example_processors/README.md#simple_solar)
 
 ### accumulation_union_example
 Reads records from a Kafka topic with common keys but different fields and merges them into a single record in a tumblingWindow using $top before emitting back to a Kafka topic.
