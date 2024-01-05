@@ -9,8 +9,7 @@ Three main examples are indexed below: code_snipplets which are example MQL solu
 [Example end to end processors](https://github.com/josephxsxn/atlas_stream_processors/tree/master/example_processors)
 
 ## terraform
-### [basicsample.data](https://github.com/josephxsxn/atlas_stream_processors/blob/master/terraform/basicsample.data)
-A terraform example (and links to docs) that will deploy an SPI (stream processing instance) and create a connection to an Atlas Database
+[Terraform examples](https://github.com/josephxsxn/atlas_stream_processors/tree/master/terraform)
 
 
 
