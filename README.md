@@ -1,5 +1,5 @@
 # atlas_stream_processors
-Joe's private repo of Stream Processor Code Examples
+Three main examples are indexed below: code_snipplets which are example MQL solutions to specific problems, example_procesors are end to end processors, and terraform examples for reference. 
 
 ## code_snipplets
 Examples of MQL code to solve various problems
