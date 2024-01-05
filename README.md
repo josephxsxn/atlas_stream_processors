@@ -6,13 +6,10 @@ Three main examples are indexed below: code_snipplets which are example MQL solu
 
 
 ## example_processors
-Example end to end processors 
-
-### explode_array_2_many_records
-Takes a document field that is an array, checks that the array has a specific value within it, explodes (unwinds) the array into multiple records each with the field name now being equal to one of the values of the array, and unsets _id to avoid collisions 
+[Example end to end processors](https://github.com/josephxsxn/atlas_stream_processors/tree/master/example_processors)
 
 ## terraform
-### basicsample.data
+### [basicsample.data](https://github.com/josephxsxn/atlas_stream_processors/blob/master/terraform/basicsample.data)
 A terraform example (and links to docs) that will deploy an SPI (stream processing instance) and create a connection to an Atlas Database
 
 
