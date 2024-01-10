@@ -15,7 +15,9 @@ s = {
   $source:  {
       connectionName: 'jsncluster0',
       db: 'bronze',
-      fullDocument: 'whenAvailable'
+      config : {
+        fullDocument: 'whenAvailable',
+                },
   }
 }
 
