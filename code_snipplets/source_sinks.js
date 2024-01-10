@@ -4,7 +4,9 @@ s = {
             connectionName: 'jsncluster0',
             db: 'asp_poc_db',
             coll: 'sensors_data',
-            fullDocument: 'whenAvailable'
+            config : {
+                  fullDocument: 'whenAvailable',
+                },        
         }
     }
 
@@ -13,7 +15,9 @@ s = {
         $source:  {
             connectionName: 'jsncluster0',
             db: 'asp_poc_db',
-            fullDocument: 'whenAvailable'
+            config : {
+                  fullDocument: 'whenAvailable',
+                },        
         }
     }
 
