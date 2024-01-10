@@ -5,7 +5,6 @@
             connectionName: 'kafka1',
             topic: 'packet_data_topic',
             timeField : {  $toDate : { $multiply: [ "$timestamp" , 1000]}},
-            partitionCount: NumberInt(8),
         }},
         {
             $tumblingWindow: {
