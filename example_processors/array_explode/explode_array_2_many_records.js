@@ -3,7 +3,9 @@ s = {
     connectionName: 'jsncluster0',
     db: 'test',
     coll: 'arrayunwind',
-    fullDocument: 'whenAvailable'
+    config : {
+      fullDocument: 'whenAvailable',
+    },
   }
 }
 
