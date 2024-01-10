@@ -4,7 +4,6 @@
                     connectionName: 'kafka1',
                     topic: 'thunderhead_race',
                     timeField : { $dateFromString : { "dateString" : "$timestamp"} },
-                    partitionCount: NumberInt(1),
                 }},
                 { $validate: {
                     validator: {
