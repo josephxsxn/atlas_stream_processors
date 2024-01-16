@@ -82,4 +82,4 @@
       }
     }
   
-    sp.process([s,m,af,newDoc,testDoc,repairDoc,rr,merge])
+    sp.process([s,m,l,newDoc,testDoc,repairDoc,rr,merge])
