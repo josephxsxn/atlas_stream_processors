@@ -1,4 +1,4 @@
- //##########
+//##########
 // DELETES WITHOUT $FUNCTION
 // Match only deletes, 
 // Lookup current record,
@@ -14,109 +14,72 @@
   }
   */
 
-db.ST001.insertOne({"dc_log_id" : 101, "f1" : "v3", "f2" : 3})
-db.ST001.deleteOne( { "dc_log_id" : 101 } )
-
-s = {
-    $source:  {
-        connectionName: 'jsncluster0',
-        db: 'bronze',
-      config : {
-        fullDocument: 'whenAvailable',
-                },
-    }
-  }
+  db.ST001.insertOne({"dc_log_id" : 101, "f1" : "v3", "f2" : 3})
+  db.ST001.deleteOne( { "dc_log_id" : 101 } )
   
-  m = {$match : {
-      $expr: {
-                      $eq: [
-                      "$operationType",
-                      "delete"
-                      ]
-  }}}
-
-//for testing use AF, this would have been the PRE changestream doc
-af = {$addFields: {orig_doc : {
-    _id: ObjectId("656a5158cb20daa0bf7fabc6"),
-    dc_log_id: 101,
-    ST001: {
-      _id: ObjectId("656a51c5992e97235562053e"),
-      dc_log_id: 101,
-      f1: 'v3',
-      f2: 3
-    },
-    _stream_meta: {
-      sourceType: 'atlas',
-      timestamp: ISODate("2023-12-01T21:36:05.507Z")
-    },
-    ST999: {
-      _id: ObjectId("656a517a992e97235562053c"),
-      dc_log_id: 101,
-      f1: 'v1',
-      f2: 1
-    }
-  }}}
- 
-//really use lookup with pre-post images when supported... 
-/*
-  l = {
-    $lookup: {
-        from: {
-            connectionName: 'jsncluster0',
-            db: 'silver',
-            coll: 'superdoc'
-        },
-        localField: "fullDocument.dc_log_id",
-        foreignField: "dc_log_id",
-        as: 'orig_doc',
+  s = {
+      $source:  {
+          connectionName: 'jsncluster0',
+          db: 'bronze',
+          config : {
+            fullDocument: 'whenAvailable',
+            fullDocumentBeforeChange: 'whenAvailable',
+          },    
     }
 }
-*/
-
-//Object to Array with Filter?
-/*
-{
-      k: 'ST001',
-      v: {
-        _id: ObjectId("656a51c5992e97235562053e"),
-        dc_log_id: 101,
-        f1: 'v3',
-        f2: 3
+    
+    m = {$match : {
+        $expr: {
+                        $eq: [
+                        "$operationType",
+                        "delete"
+                        ]
+    }}}
+  
+    l = {
+      $lookup: {
+          from: {
+              connectionName: 'jsncluster0',
+              db: 'silver',
+              coll: 'superdoc'
+          },
+          localField: "fullDocumentBeforeChange.dc_log_id",
+          foreignField: "dc_log_id",
+          as: 'orig_doc',
+      }
+  }
+  
+  newDoc = {$addFields : { newDoc : {$objectToArray: {$arrayElemAt: [ "$orig_doc", 0 ] }}}}
+  
+  testDoc = { "$addFields": { testDoc: {
+          "$filter": {
+            "input": "$newDoc",
+            "as": "newDoc",
+            "cond": {
+              $ne: [
+                "$$newDoc.k",
+                "$ns.coll"
+              ]
+            }}}}}
+  
+  repairDoc = {$addFields : {repairDoc : { $arrayToObject : "$testDoc"}}}
+  
+  rr = {
+      $replaceRoot: {newRoot: '$repairDoc'}
+  }
+    
+  
+  merge = {
+      $merge: {
+          into: {
+              connectionName: 'jsncluster0',
+              db: 'silver',
+              coll: 'superdoc'
+          },
+          on: ['dc_log_id'],
+          whenMatched: 'replace',
+          whenNotMatched: 'discard'
       }
     }
-    */
-newDoc = {$addFields : { newDoc : {$objectToArray: "$orig_doc"}}}
-
-testDoc = { "$addFields": { testDoc: {
-        "$filter": {
-          "input": "$newDoc",
-          "as": "newDoc",
-          "cond": {
-            $ne: [
-              "$$newDoc.k",
-              "$ns.coll"
-            ]
-          }}}}}
-
-repairDoc = {$addFields : {repairDoc : { $arrayToObject : "$testDoc"}}}
-
-rr = {
-    $replaceRoot: {newRoot: '$repairDoc'}
-}
   
-
-merge = {
-    $merge: {
-        into: {
-            connectionName: 'jsncluster0',
-            db: 'silver',
-            coll: 'superdoc'
-        },
-        on: ['dc_log_id'],
-        whenMatched: 'replace',
-        whenNotMatched: 'discard'
-    }
-  }
-
-  sp.process([s,m,af,newDoc,testDoc,repairDoc,rr,merge])
-
+    sp.process([s,m,af,newDoc,testDoc,repairDoc,rr,merge])
