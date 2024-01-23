@@ -1,7 +1,7 @@
 db.createCollection("userFilters")
 db.createCollection("properties")
 
-//setup full document change streams on collections
+//setup full document change streams on collections or replace with kafka
 var cols = db.getCollectionNames()
 
 for (const el of cols){
@@ -28,7 +28,7 @@ user : "jane"},
 }])
 
 
-//properties stream, insert after processor is running
+//properties stream, insert after processor is running (or get from Kafka topic)
 db.properties.insertMany([
 {city : "new york",
 baths : 1,
@@ -43,6 +43,7 @@ rooms : 1, },
 baths : 3,
 rooms : 4, }])
 
+//could be kafka rather than change streams
 s = {
     $source:  {
         connectionName: 'jsncluster0',
