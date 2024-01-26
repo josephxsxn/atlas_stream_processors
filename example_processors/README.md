@@ -14,6 +14,9 @@ Takes a document field that is an array, checks that the array has a specific va
 ### dynamicfilter
 Reads a MongoDB change stream $source collection, performs a $lookup to find filtering rules and applys the filter, increments the value of the document and writes it back to the same collection creating a loop. The merge stage output collection is dynamic and breaks the loop after a specific value is reached, writing it to another collection. 
 
+### lateData/lateDataExample.js
+Example how how late data handling works with allowedLateness. Helpful to understand how watermarks move forward and result in windows opening and closing. This example uses a timestamp from the document to control the watermark time of the event stream.
+
 ### packet_processor
 Performs a tumblingWindow off of a kafka topic $source for packet combinations of src_ip, src_port, dst_ip, dst_port and performs some time math calculations. Also an example python script for collecting Packet data and writing it to a Kafka Topic 
 
