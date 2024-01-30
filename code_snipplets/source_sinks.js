@@ -21,6 +21,18 @@ s = {
         }
     }
 
+--Change Stream Source starting in the past of the oplog with startAtOperationTime        
+s = {
+    $source:  {
+        connectionName: 'jsncluster0',
+        db: 'test',
+        coll : 'datetest',
+        config : {
+              startAtOperationTime : Timestamp(new Date('2024-01-30T00:00:01Z').getTime()/1000,0),
+            },        
+    }
+}
+
 --Merge to a Atlas Cluster Collection
 merge = {
     $merge: {
