@@ -1,3 +1,15 @@
+--Pre and Post images from Change Stream Source
+ s = {
+      $source:  {
+          connectionName: 'jsncluster0',
+          db: 'bronze',
+          config : {
+            fullDocument: 'whenAvailable',
+            fullDocumentBeforeChange: 'whenAvailable',
+          },    
+    }
+}
+
 --Full Document Change Stream from a Collection
 s = {
         $source:  {
