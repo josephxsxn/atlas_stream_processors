@@ -83,6 +83,6 @@ s1={
     connectionName: 'ccloud',
     topic: 'Stocks',
     timeField: { '$dateFromString': { dateString: '$tx_time' } },
-    config: { startAt: 'earliest' }
+    config: { auto_offset_reset: 'earliest' }
   }
 }
