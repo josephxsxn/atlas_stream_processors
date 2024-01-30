@@ -33,6 +33,18 @@ s = {
     }
 }
 
+--Change Stream Source starting with OpLog resume token
+s = {
+    $source:  {
+        connectionName: 'jsncluster0',
+        db: 'test',
+        coll : 'datetest',
+        config : {
+            startAfter : new Object({_data : '8265B8F36B000000022B042C0100296E5A100469E03217B2954C6580FCAD5A7D225571463C6F7065726174696F6E54797065003C696E736572740046646F63756D656E744B65790046645F6964006465B8F36BBDD90E425EC09B31000004'}),
+            },        
+    }
+}
+
 --Merge to a Atlas Cluster Collection
 merge = {
     $merge: {
