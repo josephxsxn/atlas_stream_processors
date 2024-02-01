@@ -9,12 +9,13 @@ db.steps_monthly.createIndex({"report_id": 1}, {unique: true})
 db.createCollection("steps_yearly")
 db.steps_yearly.createIndex({"report_id": 1}, {unique: true})
 
-db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate()}) //now
 db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate("2022-12-01T14:10:30Z")}) //2022
 db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate("2023-05-01T14:10:30Z")}) //2023 05
 db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate("2023-12-01T14:10:30Z")}) // 2023 12
-db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate("2023-12-30T14:10:30Z")}) // 2023 12 52
 db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate("2023-12-29T14:10:30Z")}) //2023 12 52
+db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate("2023-12-30T14:10:30Z")}) // 2023 12 52
+db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate("2023-12-30T14:11:30Z")}) // 2023 12 52
+db.hextest.insertOne({hex:"03C8", user : "joe", timstam : new ISODate()}) //now
 
 s = {
     $source:  {
