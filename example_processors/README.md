@@ -9,10 +9,10 @@ Reads records from a Kafka topic with common keys but different fields and merge
 Uses $merge with a pipeline to add fields together on already existing records in the target collection, this prevents having to perform a $lookup to fetch the values to be added together and lets the server perform the addition
 
 ### additive_merge / steps_add_multiplex_window.js
-Takes a stream of step counter data that is reported in hex, converts the hex to dec. Then windows the records together based on the number of output reports required and multi-plexes the updates into multiple collections.
+Takes a stream of step counter data that is reported in hex, converts the hex to dec. Then windows the records together based on the number of output reports required and multi-plexes the updates into multiple collections. Outputs and adds the steps of existing records for daily, monthly, weekly, and yearly reports.
 
 ### additive_merge / steps_add_multiplex_row.js
-Like additive_merge / steps_add_multiplex_window.js but without a window. This one collects raw data and operates row by row. Performance may suffer doing row by row depending on stream velocity against the collections. 
+Like additive_merge / steps_add_multiplex_window.js but without a window. This one collects raw data and operates row by row. Performance may suffer doing row by row depending on stream velocity against the collections. Outputs and adds the steps of existing records for raw, monthly, weekly, and yearly reports.
 
 ### additive_merge / pipelineAdder.js
 Uses $merge with a pipeline to add fields together on already existing records in the target collection, this prevents having to perform a $lookup to fetch the values to be added together and lets the server perform the addition
