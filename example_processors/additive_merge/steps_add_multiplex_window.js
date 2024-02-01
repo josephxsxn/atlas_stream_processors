@@ -21,7 +21,7 @@ s = {
         connectionName: 'jsncluster0',
         db: 'test',
         coll: 'hextest',
-        timeField :  { $dateFromString : { "dateString" : {$dateToString: { date : "$fullDocument.timstam"}}}},
+        timeField :  { $toDate : "$fullDocument.timstam"},
         config : {
           fullDocument: 'whenAvailable',
           fullDocumentBeforeChange: 'whenAvailable',
