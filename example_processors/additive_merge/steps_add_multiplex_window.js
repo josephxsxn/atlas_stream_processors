@@ -127,8 +127,9 @@ db.steps_monthly.remove({})
 
 db.steps_daily.find()
 db.steps_weekly.find()
-db.steps_yearly.find()
 db.steps_monthly.find()
+db.steps_yearly.find()
+
 
 
 /* BELOW RESULTS DIDNT WAIT FOR THE LAST WINDOW TO CLOSE FOR THE LAST RECORD.
