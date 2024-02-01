@@ -104,25 +104,10 @@ db.steps_monthly.remove({})
 
 
 /*
-    Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_raw.find()
+Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_raw.find()
 [
   {
-    _id: ObjectId("65bbc1fc06169f8e7c8e1bc2"),
-    user: 'joe',
-    timstam: ISODate("2024-02-01T16:08:26.575Z"),
-    steps: 968,
-    reports: 'raw',
-    steps_week: '4',
-    steps_month: '2',
-    steps_year: '2024',
-    report_id: 'joe-2024-02-01T16:08:26.575Z',
-    _stream_meta: {
-      sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:26.645Z")
-    }
-  },
-  {
-    _id: ObjectId("65bbc20006169f8e7c8e1c24"),
+    _id: ObjectId("65bbd92406169f8e7c8facf4"),
     user: 'joe',
     timstam: ISODate("2022-12-01T14:10:30.000Z"),
     steps: 968,
@@ -133,11 +118,11 @@ db.steps_monthly.remove({})
     report_id: 'joe-2022-12-01T14:10:30.000Z',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:30.476Z")
+      timestamp: ISODate("2024-02-01T17:47:13.677Z")
     }
   },
   {
-    _id: ObjectId("65bbc20406169f8e7c8e1c85"),
+    _id: ObjectId("65bbd92606169f8e7c8fad40"),
     user: 'joe',
     timstam: ISODate("2023-05-01T14:10:30.000Z"),
     steps: 968,
@@ -148,11 +133,11 @@ db.steps_monthly.remove({})
     report_id: 'joe-2023-05-01T14:10:30.000Z',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:34.292Z")
+      timestamp: ISODate("2024-02-01T17:47:17.464Z")
     }
   },
   {
-    _id: ObjectId("65bbc20806169f8e7c8e1cf8"),
+    _id: ObjectId("65bbd92a06169f8e7c8fada2"),
     user: 'joe',
     timstam: ISODate("2023-12-01T14:10:30.000Z"),
     steps: 968,
@@ -163,26 +148,11 @@ db.steps_monthly.remove({})
     report_id: 'joe-2023-12-01T14:10:30.000Z',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:38.093Z")
+      timestamp: ISODate("2024-02-01T17:47:20.956Z")
     }
   },
   {
-    _id: ObjectId("65bbc20c06169f8e7c8e1d5b"),
-    user: 'joe',
-    timstam: ISODate("2023-12-30T14:10:30.000Z"),
-    steps: 968,
-    reports: 'raw',
-    steps_week: '52',
-    steps_month: '12',
-    steps_year: '2023',
-    report_id: 'joe-2023-12-30T14:10:30.000Z',
-    _stream_meta: {
-      sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:41.737Z")
-    }
-  },
-  {
-    _id: ObjectId("65bbc20e06169f8e7c8e1da4"),
+    _id: ObjectId("65bbd92e06169f8e7c8fae09"),
     user: 'joe',
     timstam: ISODate("2023-12-29T14:10:30.000Z"),
     steps: 968,
@@ -193,29 +163,59 @@ db.steps_monthly.remove({})
     report_id: 'joe-2023-12-29T14:10:30.000Z',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:45.043Z")
+      timestamp: ISODate("2024-02-01T17:47:24.890Z")
+    }
+  },
+  {
+    _id: ObjectId("65bbd93606169f8e7c8faea0"),
+    user: 'joe',
+    timstam: ISODate("2023-12-30T14:10:30.000Z"),
+    steps: 968,
+    reports: 'raw',
+    steps_week: '52',
+    steps_month: '12',
+    steps_year: '2023',
+    report_id: 'joe-2023-12-30T14:10:30.000Z',
+    _stream_meta: {
+      sourceType: 'atlas',
+      timestamp: ISODate("2024-02-01T17:47:31.692Z")
+    }
+  },
+  {
+    _id: ObjectId("65bbd93a06169f8e7c8faf64"),
+    user: 'joe',
+    timstam: ISODate("2023-12-30T14:11:30.000Z"),
+    steps: 968,
+    reports: 'raw',
+    steps_week: '52',
+    steps_month: '12',
+    steps_year: '2023',
+    report_id: 'joe-2023-12-30T14:11:30.000Z',
+    _stream_meta: {
+      sourceType: 'atlas',
+      timestamp: ISODate("2024-02-01T17:47:35.700Z")
+    }
+  },
+  {
+    _id: ObjectId("65bbd93c06169f8e7c8fafb0"),
+    user: 'joe',
+    timstam: ISODate("2024-02-01T17:47:39.305Z"),
+    steps: 968,
+    reports: 'raw',
+    steps_week: '4',
+    steps_month: '2',
+    steps_year: '2024',
+    report_id: 'joe-2024-02-01T17:47:39.305Z',
+    _stream_meta: {
+      sourceType: 'atlas',
+      timestamp: ISODate("2024-02-01T17:47:39.377Z")
     }
   }
 ]
 Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_weekly.find()
 [
   {
-    _id: ObjectId("65bbc1fc06169f8e7c8e1bac"),
-    user: 'joe',
-    timstam: ISODate("2024-02-01T16:08:26.575Z"),
-    steps: 968,
-    reports: 'weekly',
-    steps_week: '4',
-    steps_month: '2',
-    steps_year: '2024',
-    report_id: 'joe-4-2-2024',
-    _stream_meta: {
-      sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:26.645Z")
-    }
-  },
-  {
-    _id: ObjectId("65bbc20006169f8e7c8e1c10"),
+    _id: ObjectId("65bbd92406169f8e7c8face9"),
     user: 'joe',
     timstam: ISODate("2022-12-01T14:10:30.000Z"),
     steps: 968,
@@ -226,11 +226,11 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_weekly.find()
     report_id: 'joe-48-12-2022',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:30.476Z")
+      timestamp: ISODate("2024-02-01T17:47:13.677Z")
     }
   },
   {
-    _id: ObjectId("65bbc20406169f8e7c8e1c7b"),
+    _id: ObjectId("65bbd92606169f8e7c8fad36"),
     user: 'joe',
     timstam: ISODate("2023-05-01T14:10:30.000Z"),
     steps: 968,
@@ -241,11 +241,11 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_weekly.find()
     report_id: 'joe-18-5-2023',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:34.292Z")
+      timestamp: ISODate("2024-02-01T17:47:17.464Z")
     }
   },
   {
-    _id: ObjectId("65bbc20806169f8e7c8e1cee"),
+    _id: ObjectId("65bbd92a06169f8e7c8fadac"),
     user: 'joe',
     timstam: ISODate("2023-12-01T14:10:30.000Z"),
     steps: 968,
@@ -256,14 +256,14 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_weekly.find()
     report_id: 'joe-48-12-2023',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:38.093Z")
+      timestamp: ISODate("2024-02-01T17:47:20.956Z")
     }
   },
   {
-    _id: ObjectId("65bbc20c06169f8e7c8e1d51"),
+    _id: ObjectId("65bbd92e06169f8e7c8fae13"),
     user: 'joe',
-    timstam: ISODate("2023-12-30T14:10:30.000Z"),
-    steps: 1936,
+    timstam: ISODate("2023-12-29T14:10:30.000Z"),
+    steps: 2904,
     reports: 'weekly',
     steps_week: '52',
     steps_month: '12',
@@ -271,29 +271,29 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_weekly.find()
     report_id: 'joe-52-12-2023',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:41.737Z")
+      timestamp: ISODate("2024-02-01T17:47:24.890Z")
+    }
+  },
+  {
+    _id: ObjectId("65bbd93c06169f8e7c8fafba"),
+    user: 'joe',
+    timstam: ISODate("2024-02-01T17:47:39.305Z"),
+    steps: 968,
+    reports: 'weekly',
+    steps_week: '4',
+    steps_month: '2',
+    steps_year: '2024',
+    report_id: 'joe-4-2-2024',
+    _stream_meta: {
+      sourceType: 'atlas',
+      timestamp: ISODate("2024-02-01T17:47:39.377Z")
     }
   }
 ]
 Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_monthly.find()
 [
   {
-    _id: ObjectId("65bbc1fc06169f8e7c8e1bb7"),
-    user: 'joe',
-    timstam: ISODate("2024-02-01T16:08:26.575Z"),
-    steps: 968,
-    reports: 'monthly',
-    steps_week: '4',
-    steps_month: '2',
-    steps_year: '2024',
-    report_id: 'joe-2-2024',
-    _stream_meta: {
-      sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:26.645Z")
-    }
-  },
-  {
-    _id: ObjectId("65bbc20006169f8e7c8e1c1a"),
+    _id: ObjectId("65bbd92406169f8e7c8fad00"),
     user: 'joe',
     timstam: ISODate("2022-12-01T14:10:30.000Z"),
     steps: 968,
@@ -304,11 +304,11 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_monthly.find()
     report_id: 'joe-12-2022',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:30.476Z")
+      timestamp: ISODate("2024-02-01T17:47:13.677Z")
     }
   },
   {
-    _id: ObjectId("65bbc20406169f8e7c8e1c8f"),
+    _id: ObjectId("65bbd92606169f8e7c8fad4a"),
     user: 'joe',
     timstam: ISODate("2023-05-01T14:10:30.000Z"),
     steps: 968,
@@ -319,14 +319,14 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_monthly.find()
     report_id: 'joe-5-2023',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:34.292Z")
+      timestamp: ISODate("2024-02-01T17:47:17.464Z")
     }
   },
   {
-    _id: ObjectId("65bbc20806169f8e7c8e1d02"),
+    _id: ObjectId("65bbd92a06169f8e7c8fad98"),
     user: 'joe',
     timstam: ISODate("2023-12-01T14:10:30.000Z"),
-    steps: 2904,
+    steps: 3872,
     reports: 'monthly',
     steps_week: '48',
     steps_month: '12',
@@ -334,29 +334,29 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_monthly.find()
     report_id: 'joe-12-2023',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:38.093Z")
+      timestamp: ISODate("2024-02-01T17:47:20.956Z")
+    }
+  },
+  {
+    _id: ObjectId("65bbd93c06169f8e7c8fafa6"),
+    user: 'joe',
+    timstam: ISODate("2024-02-01T17:47:39.305Z"),
+    steps: 968,
+    reports: 'monthly',
+    steps_week: '4',
+    steps_month: '2',
+    steps_year: '2024',
+    report_id: 'joe-2-2024',
+    _stream_meta: {
+      sourceType: 'atlas',
+      timestamp: ISODate("2024-02-01T17:47:39.377Z")
     }
   }
 ]
 Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_yearly.find()
 [
   {
-    _id: ObjectId("65bbc1fc06169f8e7c8e1bcd"),
-    user: 'joe',
-    timstam: ISODate("2024-02-01T16:08:26.575Z"),
-    steps: 968,
-    reports: 'yearly',
-    steps_week: '4',
-    steps_month: '2',
-    steps_year: '2024',
-    report_id: 'joe-2024',
-    _stream_meta: {
-      sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:26.645Z")
-    }
-  },
-  {
-    _id: ObjectId("65bbc20006169f8e7c8e1c2d"),
+    _id: ObjectId("65bbd92406169f8e7c8facde"),
     user: 'joe',
     timstam: ISODate("2022-12-01T14:10:30.000Z"),
     steps: 968,
@@ -367,14 +367,14 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_yearly.find()
     report_id: 'joe-2022',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:30.476Z")
+      timestamp: ISODate("2024-02-01T17:47:13.677Z")
     }
   },
   {
-    _id: ObjectId("65bbc20406169f8e7c8e1c99"),
+    _id: ObjectId("65bbd92606169f8e7c8fad2c"),
     user: 'joe',
     timstam: ISODate("2023-05-01T14:10:30.000Z"),
-    steps: 3872,
+    steps: 4840,
     reports: 'yearly',
     steps_week: '18',
     steps_month: '5',
@@ -382,8 +382,23 @@ Atlas atlas-ec9c8m-shard-0 [primary] test> db.steps_yearly.find()
     report_id: 'joe-2023',
     _stream_meta: {
       sourceType: 'atlas',
-      timestamp: ISODate("2024-02-01T16:08:34.292Z")
+      timestamp: ISODate("2024-02-01T17:47:17.464Z")
+    }
+  },
+  {
+    _id: ObjectId("65bbd93c06169f8e7c8faf9c"),
+    user: 'joe',
+    timstam: ISODate("2024-02-01T17:47:39.305Z"),
+    steps: 968,
+    reports: 'yearly',
+    steps_week: '4',
+    steps_month: '2',
+    steps_year: '2024',
+    report_id: 'joe-2024',
+    _stream_meta: {
+      sourceType: 'atlas',
+      timestamp: ISODate("2024-02-01T17:47:39.377Z")
     }
   }
 ]
-    */
+*/
