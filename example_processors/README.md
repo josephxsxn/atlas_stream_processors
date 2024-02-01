@@ -5,7 +5,16 @@ For a very basic intro processor using the build in ASP sample data source see [
 ### accumulation_union_example
 Reads records from a Kafka topic with common keys but different fields and merges them into a single record in a tumblingWindow using $top before emitting back to a Kafka topic.
 
-### additive_merge
+### additive_merge / pipelineAdder.js
+Uses $merge with a pipeline to add fields together on already existing records in the target collection, this prevents having to perform a $lookup to fetch the values to be added together and lets the server perform the addition
+
+### additive_merge / steps_add_multiplex_window.js
+Takes a stream of step counter data that is reported in hex, converts the hex to dec. Then windows the records together based on the number of output reports required and multi-plexes the updates into multiple collections.
+
+### additive_merge / steps_add_multiplex_row.js
+Like additive_merge / steps_add_multiplex_window.js but without a window. This one collects raw data and operates row by row. Performance may suffer doing row by row depending on stream velocity against the collections. 
+
+### additive_merge / pipelineAdder.js
 Uses $merge with a pipeline to add fields together on already existing records in the target collection, this prevents having to perform a $lookup to fetch the values to be added together and lets the server perform the addition
 
 ### array_explode
