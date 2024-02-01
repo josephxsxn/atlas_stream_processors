@@ -1,7 +1,7 @@
 db.hextest.insertOne({hex:"03C8"})
 
 
-p = {$project: {hexDec : { 
+af = {$addFields: {hexDec : { 
   $sum: {
     $map: {
        input: { $range: [0, { $strLenBytes: "$hex" }] },
@@ -16,15 +16,14 @@ p = {$project: {hexDec : {
 }}
 
 
-sp.process([s,rr,p])
-
 /*
-  {
-  _id: ObjectId("65bbacf71885149d4b1f0308"),
+{
+  _id: ObjectId("65bbadf71885149d4b1f0309"),
+  hex: '03C8',
   hexDec: 968,
   _stream_meta: {
     sourceType: 'atlas',
-    timestamp: ISODate("2024-02-01T14:38:47.661Z")
+    timestamp: ISODate("2024-02-01T14:43:03.715Z")
   }
 }
   */
