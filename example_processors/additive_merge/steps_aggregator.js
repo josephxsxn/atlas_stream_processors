@@ -1,3 +1,5 @@
+//This processor adds Steps to multiple collections based on the report format - raw, weekly, monthly, yearly. Multi-plexing a single message into multiple collections. 
+
 db.createCollection("steps_raw")
 db.steps_raw.createIndex({"report_id": 1}, {unique: true})
 db.createCollection("steps_weekly")
