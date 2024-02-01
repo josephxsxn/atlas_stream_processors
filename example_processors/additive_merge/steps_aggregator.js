@@ -87,9 +87,9 @@ m = {$merge : {
      whenNotMatched: "insert"
 }}
 
-dlq = {dlq: {connectionName: "jsncluster0", db: "test", coll: "hex_dlq"}}
+dlq = {dlq: {connectionName: "jsncluster0", db: "test", coll: "steps_dlq"}}
 
-sp.createStreamProcessor('hex', [s,rr,af,p,uw,idgen,unset,m], dlq)
+sp.createStreamProcessor('steps', [s,rr,af,p,uw,idgen,unset,m], dlq)
 
 sp.process([s,rr,af,p,uw,idgen,unset,m])
 
