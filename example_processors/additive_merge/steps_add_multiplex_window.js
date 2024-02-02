@@ -74,7 +74,7 @@ idgen = {$addFields : { report_id :
         default: {$concat : ["$user", "-", "$steps_day", "-", "$steps_month", "-", "$steps_year"]}}
       } }}
 
-unset = {$unset : ["_id", "strtime", "timstam"] }
+unset = {$unset : ["_id", "strtime", "timstam", "steps_day", "steps_week", "steps_month", "steps_year"] }
 
 w = {
   $tumblingWindow: {
