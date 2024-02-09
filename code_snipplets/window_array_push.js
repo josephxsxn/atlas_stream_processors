@@ -9,7 +9,7 @@ w = {
       interval: {size: NumberInt(10), unit: "second"},
       idleTimeout : {size: NumberInt(5), unit: "second"},
       "pipeline": 
-      [ { $sort : {"_ts" : 1}},
+      [ { $sort : {"timestamp" : 1}},
         {
           '$group': {
             '_id': '$vehicle_id', 
