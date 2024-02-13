@@ -98,3 +98,11 @@ s1={
     config: { auto_offset_reset: 'earliest' }
   }
 }
+
+--idle partition timeouts
+  s = {$source: {
+    connectionName: 'StreamProcessingDemo',
+    topic: 'events',
+    partitionIdleTimeout : {size: NumberInt(5), unit: 'second'},
+  }
+}
