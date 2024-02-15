@@ -106,3 +106,9 @@ s1={
     partitionIdleTimeout : {size: NumberInt(5), unit: 'second'},
   }
 }
+
+--documents
+s = {$source: { documents: [ 
+   {a: 1, time: "2024-02-12T15:03:20.000Z" },
+   {b: 1, time: "2024-02-12T15:03:21.000Z"} ], 
+   timeField : { $dateFromString : { "dateString" : "$time"} }}}
