@@ -112,3 +112,15 @@ s = {$source: { documents: [
    {a: 1, time: "2024-02-12T15:03:20.000Z" },
    {b: 1, time: "2024-02-12T15:03:21.000Z"} ], 
    timeField : { $dateFromString : { "dateString" : "$time"} }}}
+
+
+--timeseires collection emit
+e = {$emit : {
+    connectionName : "jsncluster0",
+    db : "test",
+    coll : "solarAggs",
+    timeseries : {
+        timeField : "timestamp",
+        metaField : "device_id"
+    }}
+}
