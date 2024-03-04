@@ -14,13 +14,15 @@ s = {$source : {
     config : {fullDocument : "whenAvailable"}
 }}
 
+af = {$addFields : {"fullDocument" : { "_id" : "$documentKey._id" }}}
+
  rr = {
   $replaceRoot: { newRoot :  { $mergeObjects: [ "$fullDocument", { "_ts" : "$_ts"} ] }}
 }
 
     m =  {$merge: {
         into: {
-            connectionName: "jsncluster0",
+            connectionName: "jsncluster1",
             db: "test",
             coll: "insertTest"},
             let : {ingestTime : "$_ts", orig : "$$ROOT"},
@@ -35,6 +37,9 @@ s = {$source : {
                         ]
     }}
 
+ dlq = {dlq: {connectionName: "jsncluster0", db: "test", coll: "ingestDLQ"}}
+ sp.createStreamProcessor("replicate",[s,af,rr,m], dlq)
+ sp.replicate.start()   
 
 
 //BASED ON INT FIELD
