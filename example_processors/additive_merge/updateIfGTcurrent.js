@@ -28,7 +28,6 @@ af = {$addFields : {"fullDocument" : { "_id" : "$documentKey._id" }}}
             on: ["_id"],
              whenMatched: [
                             { $project: { 
-                                id : 1,
                                 out:   { $cond: { if: { $gt: ["$$ingestTime", "$_ts"], }, then: "$$orig", else: "$$ROOT"  }}
                             }},
                             { $replaceRoot:  { newRoot: { $mergeObjects : ["$out"] }}},
