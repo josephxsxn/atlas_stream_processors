@@ -6,7 +6,6 @@ db.insertIngest.update({id : 2},{$set : { count : 22, data : "new"}})
 
 
 db.insertTest.createIndex({"id": 1}, {unique: true})
-db.insertTest.insertMany([{count : 11, data : "abc", id : 1}, {count : 9, data : "efg", id : 2}])
 
 s = {$source : {
     connectionName : "jsncluster0",
