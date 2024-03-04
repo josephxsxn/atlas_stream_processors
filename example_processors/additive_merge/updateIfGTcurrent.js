@@ -35,32 +35,7 @@ s = {$source : {
                         ]
     }}
 
-    //output
-    Atlas atlas-ec9c8m-shard-0 [primary] test> db.insertTest.find({})
-    [
-      {
-        _id: ObjectId("65e5d5cbd7d335144cc569ef"),
-        count: 11,
-        data: 'new',
-        id: 1,
-        _ts: ISODate("2024-03-04T14:09:05.238Z"),
-        _stream_meta: {
-          sourceType: 'atlas',
-          timestamp: ISODate("2024-03-04T14:09:05.238Z")
-        }
-      },
-      {
-        _id: ObjectId("65e5d5cbd7d335144cc569f0"),
-        count: 22,
-        data: 'new',
-        id: 2,
-        _ts: ISODate("2024-03-04T14:09:15.680Z"),
-        _stream_meta: {
-          sourceType: 'atlas',
-          timestamp: ISODate("2024-03-04T14:09:15.680Z")
-        }
-      }
-    ]
+
 
 //BASED ON INT FIELD
 db.insertIngest.insertOne({count : 10, data : "old", id :1})
