@@ -1,3 +1,4 @@
+/*
 //BASED ON _TS, update on _id
 db.createCollection("insertIngest")
 db.insertIngest.insertOne({count : 10, data : "old", num :1})
@@ -6,6 +7,13 @@ db.insertIngest.update({num : 1},{$set : { count : 11, data : "new"}})
 db.insertIngest.update({num : 2},{$set : { count : 22, data : "new"}})
 
 db.createCollection("insertTest")
+
+
+[{"count" : 10, "data" : "old", "num" :1},
+{"count" : 20, "data" : "old", "num" :2}]
+*/
+
+
 s = {$source : {
     connectionName : "jsncluster0",
     db : "test",
@@ -13,7 +21,9 @@ s = {$source : {
     config : {fullDocument : "whenAvailable"}
 }}
 
-af = {$addFields : {"fullDocument" : { "_id" : "$documentKey._id" }}}
+af = {$addFields : {"fullDocument" : { "_id" : "$documentKey._id", 
+                                       "_delete" : { $cond : { if : { $eq : ["$operationType", "delete"], }, 
+                                                        then: true, else : false }} }}}
 
  rr = {
   $replaceRoot: { newRoot :  { $mergeObjects: [ "$fullDocument", { "_ts" : "$_ts"} ] }}
