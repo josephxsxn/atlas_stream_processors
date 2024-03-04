@@ -5,6 +5,8 @@ db.insertIngest.insertOne({count : 10, data : "old", num :1})
 db.insertIngest.insertOne({count : 20, data : "old", num :2})
 db.insertIngest.update({num : 1},{$set : { count : 11, data : "new"}})
 db.insertIngest.update({num : 2},{$set : { count : 22, data : "new"}})
+db.insertIngest.remove({})
+
 
 db.createCollection("insertTest")
 
