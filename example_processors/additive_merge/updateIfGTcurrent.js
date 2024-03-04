@@ -1,10 +1,11 @@
-//BASED ON _TS
+//BASED ON _TS, update on _id
+db.createCollection("insertIngest")
 db.insertIngest.insertOne({count : 10, data : "old", id :1})
 db.insertIngest.insertOne({count : 20, data : "old", id :2})
 db.insertIngest.update({id : 1},{$set : { count : 11, data : "new"}})
 db.insertIngest.update({id : 2},{$set : { count : 22, data : "new"}})
 
-
+db.createCollection("insertTest")
 db.insertTest.createIndex({"id": 1}, {unique: true})
 
 s = {$source : {
