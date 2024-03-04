@@ -2,11 +2,10 @@
 db.createCollection("insertIngest")
 db.insertIngest.insertOne({count : 10, data : "old", num :1})
 db.insertIngest.insertOne({count : 20, data : "old", num :2})
-db.insertIngest.update({id : 1},{$set : { count : 11, data : "new"}})
-db.insertIngest.update({id : 2},{$set : { count : 22, data : "new"}})
+db.insertIngest.update({num : 1},{$set : { count : 11, data : "new"}})
+db.insertIngest.update({num : 2},{$set : { count : 22, data : "new"}})
 
 db.createCollection("insertTest")
-
 s = {$source : {
     connectionName : "jsncluster0",
     db : "test",
@@ -32,8 +31,7 @@ af = {$addFields : {"fullDocument" : { "_id" : "$documentKey._id" }}}
                                 id : 1,
                                 out:   { $cond: { if: { $gt: ["$$ingestTime", "$_ts"], }, then: "$$orig", else: "$$ROOT"  }}
                             }},
-                            { $replaceRoot:  { newRoot: { $mergeObjects : ["$out", {id : "$id"}] }}},
-                            {$unset : ["_id"]}
+                            { $replaceRoot:  { newRoot: { $mergeObjects : ["$out"] }}},
                         ]
     }}
 
