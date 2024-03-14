@@ -1,3 +1,5 @@
+Repo of MongoDB Atlas Stream Processing artifacts
+
 # atlas_stream_processors
 Three main examples are indexed below: code_snipplets which are example MQL solutions to specific problems, example_procesors are end to end processors, and terraform examples for reference. 
 
