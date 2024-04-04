@@ -124,3 +124,13 @@ e = {$emit : {
         metaField : "device_id"
     }}
 }
+
+--change stream source with pushdown pipeline operator
+s = {$source : {
+    connectionName : 'jsncluster0',
+    db : "test",
+    coll : "format",
+    config : {
+         fullDocument: 'whenAvailable',
+        pipeline : [{ $match: { 'fullDocument.num': 1 } }]}
+}}
