@@ -134,3 +134,11 @@ s = {$source : {
          fullDocument: 'whenAvailable',
         pipeline : [{ $match: { 'fullDocument.num': 1 } }]}
 }}
+
+
+--wildcard pipeline match for specific collections with changestream
+s = {$source : {
+    connectionName : 'jsncluster0',
+    db : "test",
+    config : {pipeline : [{$match : { $expr: { $regexMatch: { input: "$ns.coll" , regex: "pipe_.*", options: "i" } }}  }]}
+}}
