@@ -142,3 +142,22 @@ s = {$source : {
     db : "test",
     config : {pipeline : [{$match : { $expr: { $regexMatch: { input: "$ns.coll" , regex: "pipe_.*", options: "i" } }}  }]}
 }}
+
+
+--Kafka Keys for Source and Emit
+s={
+  '$source': {
+    connectionName: 'ccloud',
+    topic: 'keytest',
+    config: { auto_offset_reset: 'earliest',
+              keyFormat : "string" }
+  }
+}
+
+
+e = {$emit : {
+  connectionName : 'ccloud',
+  topic : 'keyOutTest',
+  config : { key: {$toString : "$_stream_meta.source.partition"}, 
+             keyFormat : "string"}
+}}
