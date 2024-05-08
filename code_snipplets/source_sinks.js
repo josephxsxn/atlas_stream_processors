@@ -169,6 +169,5 @@ e = {$emit : {
   topic : 'keyOutTest',
   config : { key: {$toString : "$_stream_meta.source.partition"}, 
              keyFormat : "string",
-             headers : "$_stream_meta.source.headers"}
 }
 }}
