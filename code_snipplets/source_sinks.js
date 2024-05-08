@@ -168,5 +168,7 @@ e = {$emit : {
   connectionName : 'ccloud',
   topic : 'keyOutTest',
   config : { key: {$toString : "$_stream_meta.source.partition"}, 
-             keyFormat : "string"}
+             keyFormat : "string",
+             headers : "$_stream_meta.source.headers"}
+}
 }}
