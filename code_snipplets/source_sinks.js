@@ -145,6 +145,15 @@ s = {$source : {
 
 
 --Kafka Keys for Source and Emit
+KeyFormat values:
+            BinData: "binData"
+            String: "string"
+            Json: "json"
+            # The int and long are big-endian to align with the Java serializer/deserializer for Kafka
+            Int: "int"
+            Long: "long"
+
+
 s={
   '$source': {
     connectionName: 'ccloud',
