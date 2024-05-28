@@ -30,6 +30,18 @@ for (const el of cols){
 }
 ```
 
+## Count messages on oplog
+Check how many messages on the oplog for a given namespace/collection, change test.pipelinetest to be db.coll
+```
+use local
+db.oplog.rs.aggregate( [
+    {$match : {ns : "test.pipelinetest"}},
+   { $group:   {_id : { op: "$op" , ns : "$ns"},  op: { $sum: 1 } }},
+   { $project: { _id: 1, op : 1, ns : 1 } },
+   {$sort: {"_id.ns" : 1,  "_id.op" : 1 }}
+] )
+```
+
 # Outbound Control Plane IPs for Firewall Access Lists
 ```
 curl -H 'Accept: application/vnd.atlas.2023-11-15+json' -s 'https://cloud.mongodb.com/api/atlas/v2/unauth/controlPlaneIPAddresses'
