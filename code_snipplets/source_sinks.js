@@ -159,7 +159,9 @@ s={
     connectionName: 'ccloud',
     topic: 'keytest',
     config: { auto_offset_reset: 'earliest',
-              keyFormat : "string" }
+              keyFormat : "string",
+              keyFormatError: 'passThrough'
+            }
   }
 }
 
