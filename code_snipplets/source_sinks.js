@@ -173,3 +173,31 @@ e = {$emit : {
              keyFormat : "string",
 }
 }}
+
+
+--manual partiton by _id
+ s = {
+      $source:  {
+          connectionName: 'jsncluster0',
+          db: 'test',
+          coll : 'hashtest',
+          config : {
+            fullDocument: 'whenAvailable',
+            fullDocumentBeforeChange: 'whenAvailable',
+            pipeline : [ 
+              {  $addFields : { 
+                  hashedPlanIdMod : { 
+                    "$mod" : [  
+
+                      { 
+                        "$abs" : 
+                       { 
+                          "$toHashedIndexKey" : "$documentKey._id" 
+                          } }, 
+                      2 
+                      ] 
+                    } 
+                  }
+                }, 
+                {$match : { $expr: { $eq : ["$hashedPlanIdMod", 0]}}}
+              ] },   }}
