@@ -46,3 +46,15 @@ db.oplog.rs.aggregate( [
 ```
 curl -H 'Accept: application/vnd.atlas.2023-11-15+json' -s 'https://cloud.mongodb.com/api/atlas/v2/unauth/controlPlaneIPAddresses'
 ```
+# Who is using a change stream
+Run on admin db of a database cluster
+```
+db.aggregate([
+  { $currentOp: { allUsers: true }},
+  { $match: {
+      "cursor.tailable": true,
+      "cursor.originatingCommand.pipeline.0.$changeStream": { $exists: true }
+    }
+  }
+]);
+```
