@@ -1,3 +1,4 @@
+```
 export TF_VAR_MONGODB_ATLAS_PROJECT_ID=<<YOURVALUE>>
 export TF_VAR_MONGODB_ATLAS_INSTANCE_NAME=spitest
 export TF_VAR_MONGODB_ATLAS_PUBLIC_KEY=<<YOURVALUE>>
@@ -24,3 +25,4 @@ ln -s scripts/updateprocessor.tf updateprocessor.tf
 terraform apply
 
 rm updateprocessor.tf
+```
