@@ -1,3 +1,5 @@
+Example Terraform life cycle of a processor that creates a change stream processor, allows it to be stopped capturing the resume token to use in the processor that will replace it, drops the processor, and creates the new processor injecting the resume token into it.
+
 ```
 export TF_VAR_MONGODB_ATLAS_PROJECT_ID=<<YOURVALUE>>
 export TF_VAR_MONGODB_ATLAS_INSTANCE_NAME=spitest
