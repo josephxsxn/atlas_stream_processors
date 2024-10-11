@@ -201,3 +201,8 @@ e = {$emit : {
                 }, 
                 {$match : { $expr: { $eq : ["$hashedPlanIdMod", 0]}}}
               ] },   }}
+
+
+--kafka multi-topic $source
+s = {$source : {connectionName : "kafkaprod",
+    topic : ["topic_1","topic_2"]}}
