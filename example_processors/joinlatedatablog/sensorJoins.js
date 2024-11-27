@@ -22,6 +22,19 @@ p = {$project : {
     humidity : {$arrayElemAt : ["$humidity" ,0]},
     temperature :  {$arrayElemAt : ["$temperature" ,0]},
 }}
+af = {
+    $addFields: {
+        nullFilter: {
+            $arrayToObject:{
+                $filter:{
+                    input:{$objectToArray:"$$ROOT"}, 
+                    cond:{$not:{$in:["$$this.v", [null, "", {}]  ]}}
+                }
+            }
+        }
+    }
+}
+rr = {$replaceRoot : { newRoot : "$nullFilter"}}
 m = {
     $merge: {
         into: {
@@ -36,5 +49,5 @@ m = {
 }
 
 dlq = {dlq: {connectionName: "jsncluster0", db: "sensorData", coll: "sensorDLQ"}}
-sp.createStreamProcessor('sensorJoins',[s,w,p,m],dlq)
+sp.createStreamProcessor('sensorJoins',[s,w,p,af,rr,m],dlq)
 sp.sensorJoins.start()
