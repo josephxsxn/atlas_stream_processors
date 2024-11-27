@@ -12,8 +12,8 @@ w = {$tumblingWindow : {
         pipeline : [
             { $group : {
                 _id : "$sensorIdGroup",      
-                humidity: {$top : { output : ["$humidity", "$_ts"],  sortBy : { "timestamp" : -1, "humidity" : -1,  }}},
-                temperature: {$top : { output : ["$temperature", "$_ts"],  sortBy : { "timestamp" : -1, "temperature" : -1,  }}},
+                humidity: {$top : { output : ["$humidity", "$_ts"],  sortBy : { "humidity" : -1, "timestamp" : -1,   }}},
+                temperature: {$top : { output : ["$temperature", "$_ts"],  sortBy : {  "temperature" : -1, "timestamp" : -1, }}},
             }},
             ]
 }}
