@@ -30,8 +30,7 @@ db.reservations.remove({flight : 1, passenger : [{name : "joe"}]})
 db.reservations.remove({flight : 2, passenger : [{name : "amber"}]})
 
 
-
-
+//Atlas Stream Processing
 s = {$source : {connectionName : "jsncluster0", db : "test", coll : "reservations", config : { fullDocument: 'whenAvailable', fullDocumentBeforeChange: 'whenAvailable',}}}
 rr = {$replaceRoot: { newRoot :  { $mergeObjects: [ "$fullDocument", {"deleteChange" : "$fullDocumentBeforeChange"}, { "operationType" : "$operationType"} ] }}}
 aff = {$addFields : {"flight" : {$switch: {
