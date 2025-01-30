@@ -19,7 +19,6 @@ db.passengerList.insertOne({flight : 1, list : [{name : "john"}, {name : "bob"}]
 //Add new reservations to the flight
 db.reservations.insertOne({flight : 1, passenger : [{name : "joe"}]})
 db.reservations.insertOne({flight : 1, passenger : [{name : "kenny"},{name : "laura"}]})
-db.reservations.insertOne({flight : 1, passenger : [{name : "john"}]})
 
 //create a new flight that has no reservations at all
 db.reservations.insertOne({flight : 2, passenger : [{name : "amber"}]})
