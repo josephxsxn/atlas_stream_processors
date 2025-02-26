@@ -5,6 +5,7 @@ import sys
 import time
 import os
 from dotenv import load_dotenv
+import argparse
 
 # Load environment variables from .env file
 load_dotenv()
@@ -73,8 +74,17 @@ def main():
         print("Please set ATLAS_USERNAME, ATLAS_API_KEY, ATLAS_PROJECT_ID, and ATLAS_STREAM_INSTANCE.")
         sys.exit(1)
 
+    # Argument parsing
+    parser = argparse.ArgumentParser(description="Stop MongoDB Atlas Stream Processors.")
+    parser.add_argument("--sleep", type=int, help="Sleep time in seconds between checks.  If omitted, the script runs only once.")
+    args = parser.parse_args()
 
-    while True:  # Infinite loop
+    sleep_time = args.sleep
+
+    # Determine if the script should run in a loop or just once
+    run_loop = sleep_time is not None
+
+    while True:
         processors = get_atlas_stream_processors(username, api_key, project_id, stream_instance)
 
         if processors:
@@ -85,8 +95,12 @@ def main():
         else:
             print("Failed to retrieve stream processors.")
 
-        print(f"Sleeping for 30 seconds...")
-        time.sleep(30)  # Wait for 30 seconds
+        if not run_loop:
+            break  # Exit after one iteration if no sleep time is specified
+
+        print(f"Sleeping for {sleep_time} seconds...")
+        time.sleep(sleep_time)
+
 
 
 if __name__ == "__main__":
