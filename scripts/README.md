@@ -25,7 +25,7 @@ Start all MongoDB Atlas Stream Processors in a Stream Processing Instance
 options:
   -h, --help            show this help message and exit
   --startAtOperationTime STARTATOPERATIONTIME
-                        Optional ISO 8601 date string to start the processors at. Format: YYYY-MM-DDTHH:MM:SS.sssZ
+                        Optional ISO 8601 date string to start change stream source processors at. Format: YYYY-MM-DDTHH:MM:SS.sssZ
 
 python3 startAll.py --startAtOperationTime "2025-01-21T19:25:18.262Z"
 python3 startAll.py 
