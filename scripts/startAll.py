@@ -48,8 +48,8 @@ def start_stream_processor(username, api_key, project_id, stream_instance, proce
         project_id: Atlas project ID.
         stream_instance:  Stream instance name.
         processor_name: Name of the processor to start.
-        start_at_time: Optional ISO 8601 date string.  If provided, the
-            processor will be started at this time.  Format: YYYY-MM-DDTHH:MM:SS.sssZ
+        start_at_time: Optional ISO 8601 date string.  If provided, change stream source
+            processors will be started at this time.  Format: YYYY-MM-DDTHH:MM:SS.sssZ
     """
     url = f"https://cloud.mongodb.com/api/atlas/v2/groups/{project_id}/streams/{stream_instance}/processor/{processor_name}:start"
     headers = {
@@ -91,7 +91,7 @@ def main():
     # --- Argument Parsing ---
     parser = argparse.ArgumentParser(description="Start MongoDB Atlas Stream Processors.")
     parser.add_argument("--startAtOperationTime", type=str,
-                        help="Optional ISO 8601 date string to start the processors at. Format: YYYY-MM-DDTHH:MM:SS.sssZ")
+                        help="Optional ISO 8601 date string to start change stream source processors at. Format: YYYY-MM-DDTHH:MM:SS.sssZ")
     args = parser.parse_args()
     # --- End Argument Parsing ---
 
