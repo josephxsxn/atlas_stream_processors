@@ -47,7 +47,7 @@ v1 = { $validate: {
                                         watts : {
                                             bsonType : "int",
                                             minimum: 0,
-                                            maximum: 250,
+                                            maximum: 500,
                                             description: "'obs.watts' is required and cannot be less then 0 or more then 250"
                                         },
                                         temp : {
