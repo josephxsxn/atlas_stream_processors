@@ -41,7 +41,7 @@ resource "confluent_network" "private_link" {
 resource "confluent_private_link_access" "aws" {
   display_name = "example-private-link-access"
   aws {
-    account = "..." # MONGO AWS ACCOUNT for the specific atlas project and region used 
+    account = "..." # MONGO AWS ACCOUNT for the specific atlas project and region used https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Streams/operation/getAccountDetails
   }
   environment {
     id = confluent_environment.staging.id
