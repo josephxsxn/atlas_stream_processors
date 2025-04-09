@@ -149,3 +149,23 @@ resource "mongodbatlas_stream_connection" "kafkacluster" {
     }
 }
 
+#processor file
+/* 
+[
+{"$source" : {"connectionName" : "jsncluster0conn", "db" : "test", "coll" : "pltestdata"}},
+{"$emit" : {"connectionName" : "kafkapl", "topic" : "test"}}
+]
+*/
+
+data "local_file" "processor" {
+  filename = "PATHTOPROCESSORFILE" 
+}
+
+resource "mongodbatlas_stream_processor" "stream-processor-change-stream" {
+  project_id = "...." # Atlas Project ID
+  instance_name = "JSNTFTESTING"
+  processor_name = "csstream"
+  pipeline       = data.local_file.processor.content
+  state          = "STARTED"
+}
+
